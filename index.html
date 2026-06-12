@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Agentforce · Varejo Omnichannel × Convergence 2026</title>
+<style>
+/* ── RESET & TOKENS ─────────────────────────────────── */
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --sf-dark:#032d60;--sf-blue:#0070d2;--sf-teal:#06a59a;
+  --sf-orange:#ff6b35;--sf-green:#04a56d;
+  --bg-light:#f4f6f9;--white:#fff;
+  --text:#16325c;--muted:#54698d;
+  --night:#0a0f1e;--night-mid:#12192e;
+  --night-teal:#00c9b1;--night-blue:#2d7cf5;
+  --night-text:#e8edf5;--night-muted:#8898aa;
+  --night-card:rgba(255,255,255,.04);--night-border:rgba(255,255,255,.09);
+}
+body{font-family:'Salesforce Sans',Arial,sans-serif;background:var(--bg-light);color:var(--text)}
+a{text-decoration:none}
+img{display:block}
+
+/* ── GLOBAL TOP BAR ─────────────────────────────────── */
+.topbar{
+  background:var(--sf-dark);
+  display:flex;align-items:center;
+  padding:0 24px;
+  position:sticky;top:0;z-index:200;
+  box-shadow:0 2px 12px rgba(0,0,0,.25);
+}
+.topbar .brand{
+  font-size:.75rem;font-weight:800;letter-spacing:1.5px;
+  text-transform:uppercase;color:#7ec8e3;
+  margin-right:32px;white-space:nowrap;flex-shrink:0;
+  padding:14px 0;
+}
+.tabs{display:flex;gap:0;overflow-x:auto;}
+.tabs button{
+  background:none;border:none;cursor:pointer;
+  color:#7ec8e3;font-size:.8rem;font-weight:700;
+  letter-spacing:.5px;text-transform:uppercase;
+  padding:16px 22px;border-bottom:3px solid transparent;
+  transition:color .2s,border-color .2s;white-space:nowrap;
+}
+.tabs button:hover{color:#fff;}
+.tabs button.active{color:#fff;border-bottom-color:var(--sf-orange);}
+
+/* ── PAGE SHELLS ─────────────────────────────────────── */
+.page{display:none}
+.page.active{display:block}
+
+/* ══════════════════════════════════════════════════════
+   PAGE 1 — AGENTIC VALUE HYPOTHESIS
+══════════════════════════════════════════════════════ */
+.p1-hero{
+  background:linear-gradient(135deg,var(--sf-dark) 0%,var(--sf-blue) 100%);
+  color:#fff;padding:60px 40px 40px;text-align:center;
+}
+.p1-hero .label{font-size:11px;letter-spacing:2px;text-transform:uppercase;
+  color:#7ec8e3;margin-bottom:12px}
+.p1-hero h1{font-size:2.2rem;font-weight:700;margin-bottom:16px;line-height:1.2}
+.p1-hero p{font-size:1rem;color:#cce5f6;max-width:680px;margin:0 auto}
+.badge{display:inline-block;background:var(--sf-orange);color:#fff;
+  font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;
+  text-transform:uppercase;letter-spacing:1px;margin-top:20px}
+.p1-subnav{background:rgba(0,0,0,.2);display:flex;justify-content:center;flex-wrap:wrap}
+.p1-subnav a{color:#7ec8e3;padding:12px 18px;font-size:.75rem;font-weight:600;
+  letter-spacing:.5px;transition:background .2s}
+.p1-subnav a:hover{background:rgba(255,255,255,.1);color:#fff}
+.sec{max-width:1100px;margin:0 auto;padding:60px 28px}
+.sec h2{font-size:1.5rem;color:var(--sf-dark);margin-bottom:8px;
+  border-left:4px solid var(--sf-blue);padding-left:16px}
+.sec .sub{color:var(--muted);font-size:.9rem;margin-bottom:32px;padding-left:20px}
+.hyp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px;margin-top:8px}
+.hyp-card{background:var(--white);border-radius:12px;padding:26px 22px;
+  box-shadow:0 2px 12px rgba(0,0,0,.07);border-top:4px solid var(--sf-blue);
+  transition:transform .2s,box-shadow .2s}
+.hyp-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.12)}
+.hyp-card .num{font-size:1.8rem;font-weight:900;color:var(--sf-blue);margin-bottom:10px}
+.hyp-card h3{font-size:.95rem;font-weight:700;color:var(--sf-dark);margin-bottom:8px}
+.hyp-card p{font-size:.85rem;color:var(--muted);line-height:1.6}
+.hyp-card .kpi{display:inline-block;margin-top:12px;font-size:.77rem;
+  background:#e8f4fd;color:var(--sf-blue);padding:4px 10px;border-radius:6px;font-weight:700}
+.stripe{background:#eaf3fb;padding:60px 0}
+.arch-table{width:100%;border-collapse:collapse;background:var(--white);
+  border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.07)}
+.arch-table thead{background:var(--sf-dark);color:#fff}
+.arch-table th{padding:13px 15px;text-align:left;font-size:.8rem;letter-spacing:.5px;text-transform:uppercase}
+.arch-table td{padding:13px 15px;font-size:.85rem;border-bottom:1px solid #e8edf3;vertical-align:top}
+.arch-table tr:last-child td{border-bottom:none}
+.arch-table tr:hover td{background:#f0f6ff}
+.tag{display:inline-block;padding:3px 8px;border-radius:10px;font-size:.72rem;font-weight:700;margin-right:3px}
+.tag-auto{background:#d4efdf;color:#1a6e36}
+.tag-assist{background:#d6eaf8;color:#1a5276}
+.tag-orch{background:#fdebd0;color:#784212}
+.roadmap{display:flex;gap:22px;flex-wrap:wrap;margin-top:10px}
+.phase{flex:1;min-width:200px;background:var(--white);border-radius:12px;
+  padding:22px;box-shadow:0 2px 12px rgba(0,0,0,.07)}
+.phase .ph-label{font-size:.68rem;font-weight:800;text-transform:uppercase;
+  letter-spacing:1.5px;color:var(--muted);margin-bottom:5px}
+.phase h4{font-size:.95rem;font-weight:700;color:var(--sf-dark);margin-bottom:12px}
+.phase ul{list-style:none;padding:0}
+.phase ul li{font-size:.82rem;color:var(--muted);padding:4px 0;
+  border-bottom:1px dashed #e8edf3;display:flex;align-items:flex-start;gap:5px}
+.phase ul li::before{content:"→";color:var(--sf-blue);font-weight:700;flex-shrink:0}
+.phase-1{border-top:4px solid var(--sf-blue)}
+.phase-2{border-top:4px solid var(--sf-teal)}
+.phase-3{border-top:4px solid var(--sf-orange)}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:18px;margin-top:10px}
+.kpi-box{background:var(--white);border-radius:12px;padding:22px 18px;
+  text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.07)}
+.kpi-box .val{font-size:1.9rem;font-weight:900;color:var(--sf-blue)}
+.kpi-box .desc{font-size:.77rem;color:var(--muted);margin-top:5px;line-height:1.4}
+.waf-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px;margin-top:10px}
+.waf-card{background:var(--white);border-radius:10px;padding:18px;
+  box-shadow:0 2px 8px rgba(0,0,0,.06);border-left:4px solid var(--sf-orange)}
+.waf-card h4{font-size:.88rem;font-weight:700;color:var(--sf-dark);margin-bottom:7px}
+.waf-card p{font-size:.8rem;color:var(--muted);line-height:1.5}
+
+/* ══════════════════════════════════════════════════════
+   PAGE 2 — BLUEPRINT TÉCNICO
+══════════════════════════════════════════════════════ */
+.p2-hero{
+  background:linear-gradient(160deg,#032d60 0%,#0070d2 55%,#06a59a 100%);
+  padding:70px 40px 50px;text-align:center;color:#fff;
+}
+.p2-hero .eyebrow{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;
+  color:#7ec8e3;margin-bottom:14px}
+.p2-hero h1{font-size:2.1rem;font-weight:800;margin-bottom:16px;line-height:1.25}
+.p2-hero p{font-size:.98rem;color:#cce5f6;max-width:640px;margin:0 auto 22px}
+.pill{display:inline-block;border:1.5px solid rgba(255,255,255,.4);
+  color:#fff;padding:5px 16px;border-radius:20px;font-size:.77rem;font-weight:600;margin:3px}
+.p2-wrap{max-width:1120px;margin:0 auto;padding:60px 28px}
+.p2-wrap h2{font-size:1.4rem;color:var(--sf-dark);font-weight:700;
+  border-bottom:3px solid var(--sf-blue);padding-bottom:10px;margin-bottom:24px}
+.arch-viz{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:48px}
+.arch-layer{background:var(--white);border-radius:12px;padding:18px 14px;
+  box-shadow:0 2px 10px rgba(0,0,0,.07);text-align:center}
+.arch-layer .icon{font-size:1.9rem;margin-bottom:8px}
+.arch-layer h4{font-size:.82rem;font-weight:700;color:var(--sf-dark);margin-bottom:5px}
+.arch-layer p{font-size:.73rem;color:var(--muted);line-height:1.4}
+.ch-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:18px;margin-bottom:48px}
+.ch-card{background:var(--white);border-radius:14px;padding:22px 18px;
+  box-shadow:0 2px 10px rgba(0,0,0,.07);border-top:4px solid var(--sf-blue)}
+.ch-card.wapp{border-top-color:#25d366}
+.ch-card.store{border-top-color:var(--sf-orange)}
+.ch-card.app{border-top-color:#7b68ee}
+.ch-card.ecomm{border-top-color:var(--sf-green)}
+.ch-card .ch-icon{font-size:1.7rem;margin-bottom:10px}
+.ch-card h3{font-size:.9rem;font-weight:700;color:var(--sf-dark);margin-bottom:7px}
+.ch-card ul{list-style:none;padding:0}
+.ch-card ul li{font-size:.78rem;color:var(--muted);padding:3px 0;border-bottom:1px solid #f0f4f8}
+.ch-card ul li:last-child{border:none}
+.ch-card ul li::before{content:"✓ ";color:var(--sf-green);font-weight:700}
+.dec-table{width:100%;border-collapse:collapse;background:var(--white);
+  border-radius:12px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.07);margin-bottom:48px}
+.dec-table th{background:var(--sf-dark);color:#fff;padding:11px 15px;
+  text-align:left;font-size:.78rem;text-transform:uppercase;letter-spacing:.5px}
+.dec-table td{padding:11px 15px;font-size:.83rem;border-bottom:1px solid #edf2f7;vertical-align:top}
+.dec-table tr:hover td{background:#f0f6ff}
+.tool{display:inline-block;background:#e8f4fd;color:var(--sf-blue);
+  padding:3px 9px;border-radius:6px;font-size:.73rem;font-weight:700;margin:2px}
+.gloss-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:14px}
+.gloss-item{background:var(--white);border-radius:10px;padding:16px;box-shadow:0 1px 6px rgba(0,0,0,.06)}
+.gloss-item strong{font-size:.88rem;color:var(--sf-dark);display:block;margin-bottom:5px}
+.gloss-item p{font-size:.8rem;color:var(--muted);line-height:1.5}
+
+/* ══════════════════════════════════════════════════════
+   PAGE 3 — CONVERGENCE INSIGHTS (DARK)
+══════════════════════════════════════════════════════ */
+.p3-wrap{background:var(--night);color:var(--night-text);min-height:100vh}
+.p3-hero{
+  background:radial-gradient(ellipse at top,#1a2a6c 0%,var(--night) 70%);
+  padding:80px 40px 60px;text-align:center;
+}
+.p3-hero .src-tag{font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--night-teal);margin-bottom:14px;display:block}
+.p3-hero h1{font-size:2.4rem;font-weight:900;margin-bottom:18px;line-height:1.2;
+  background:linear-gradient(135deg,#fff 0%,var(--night-teal) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.p3-hero p{font-size:1rem;color:var(--night-muted);max-width:660px;margin:0 auto 24px;line-height:1.7}
+.p3-hero .attr{font-size:.77rem;color:rgba(255,255,255,.3)}
+.p3-subnav{background:var(--night-mid);border-bottom:1px solid var(--night-border);
+  display:flex;justify-content:center;flex-wrap:wrap;}
+.p3-subnav a{color:var(--night-muted);padding:14px 18px;font-size:.73rem;
+  font-weight:700;letter-spacing:.5px;text-transform:uppercase;transition:color .2s}
+.p3-subnav a:hover{color:var(--night-teal)}
+.p3-sec{max-width:1100px;margin:0 auto;padding:70px 28px}
+.p3-sec-hdr{margin-bottom:38px}
+.p3-sec-hdr .ey{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--night-teal);margin-bottom:8px}
+.p3-sec-hdr h2{font-size:1.7rem;font-weight:700;color:#fff;margin-bottom:8px}
+.p3-sec-hdr p{color:var(--night-muted);font-size:.9rem;line-height:1.6;max-width:640px}
+.p3-stripe{background:var(--night-mid);padding:70px 0}
+.conv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:22px}
+.conv-card{background:var(--night-card);border:1px solid var(--night-border);
+  border-radius:16px;padding:28px 24px;transition:border-color .2s,transform .2s}
+.conv-card:hover{border-color:var(--night-teal);transform:translateY(-4px)}
+.conv-card .cnum{font-size:2.2rem;font-weight:900;
+  background:linear-gradient(135deg,var(--night-blue),var(--night-teal));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:12px}
+.conv-card h3{font-size:.95rem;font-weight:700;color:#fff;margin-bottom:10px}
+.amy-q{border-left:3px solid var(--night-teal);padding:9px 13px;
+  background:rgba(0,201,177,.06);border-radius:0 8px 8px 0;
+  font-size:.78rem;color:var(--night-muted);line-height:1.6;margin-bottom:12px;font-style:italic}
+.sf-angle{font-size:.8rem;color:var(--night-text);line-height:1.6}
+.sf-angle strong{color:var(--night-teal)}
+.sig-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:16px}
+.sig-box{background:var(--night-card);border:1px solid var(--night-border);
+  border-radius:12px;padding:20px 16px}
+.sig-box .icon{font-size:1.5rem;margin-bottom:8px}
+.sig-box h4{font-size:.85rem;font-weight:700;color:#fff;margin-bottom:6px}
+.sig-box p{font-size:.76rem;color:var(--night-muted);line-height:1.5}
+.imp-list{list-style:none;padding:0;display:flex;flex-direction:column;gap:14px}
+.imp-list li{background:var(--night-card);border:1px solid var(--night-border);
+  border-radius:12px;padding:20px 22px;display:flex;gap:18px;align-items:flex-start}
+.imp-list .impn{font-size:1.7rem;font-weight:900;color:var(--sf-orange);flex-shrink:0;min-width:38px}
+.imp-list h4{font-size:.9rem;font-weight:700;color:#fff;margin-bottom:6px}
+.imp-list p{font-size:.8rem;color:var(--night-muted);line-height:1.6}
+.sfprod{display:inline-block;background:rgba(45,124,245,.15);
+  color:var(--night-blue);padding:3px 9px;border-radius:6px;font-size:.73rem;
+  font-weight:700;margin-top:6px;margin-right:5px}
+.tl{position:relative;padding-left:30px;border-left:2px solid var(--night-border)}
+.tl-item{position:relative;padding-bottom:30px}
+.tl-item::before{content:'';position:absolute;left:-37px;top:4px;
+  width:13px;height:13px;border-radius:50%;background:var(--night-blue);
+  border:2px solid var(--night)}
+.tl-item.now::before{background:var(--night-teal)}
+.tl-item.fut::before{background:var(--sf-orange)}
+.tl-item .tl-date{font-size:.7rem;font-weight:700;color:var(--night-teal);
+  text-transform:uppercase;letter-spacing:1px;margin-bottom:5px}
+.tl-item h4{font-size:.9rem;font-weight:700;color:#fff;margin-bottom:5px}
+.tl-item p{font-size:.8rem;color:var(--night-muted);line-height:1.5}
+
+/* ── SHARED FOOTER ───────────────────────────────────── */
+.gfooter{
+  background:var(--sf-dark);color:#7ec8e3;
+  text-align:center;padding:22px;font-size:.78rem;
+}
+.gfooter.dark{background:var(--night-mid);border-top:1px solid var(--night-border);color:var(--night-muted)}
+.gfooter strong,.gfooter.dark strong{color:#fff}
+
+/* ── RESPONSIVE ──────────────────────────────────────── */
+@media(max-width:640px){
+  .topbar{flex-wrap:wrap;padding:0 12px}
+  .tabs button{padding:12px 12px;font-size:.68rem}
+  .p1-hero h1,.p2-hero h1,.p3-hero h1{font-size:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     GLOBAL TOP NAVIGATION BAR
+═══════════════════════════════════════════ -->
+<div class="topbar">
+  <div class="brand">Agentforce · Varejo</div>
+  <div class="tabs">
+    <button class="active" onclick="showPage('p1',this)">🎯 Value Hypothesis</button>
+    <button onclick="showPage('p2',this)">🏗️ Blueprint Técnico</button>
+    <button onclick="showPage('p3',this)">🌐 Convergence 2026</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE 1 — AGENTIC VALUE HYPOTHESIS
+═══════════════════════════════════════════ -->
+<div id="p1" class="page active">
+  <div class="p1-hero">
+    <div class="label">Executive Briefing · Salesforce Agentforce</div>
+    <h1>Agentic Value Hypothesis
+
+Varejo Omnichannel</h1>
+    <p>Quatro hipóteses de valor transformacional para varejistas que operam venda assistida em loja, WhatsApp, app e e-commerce — com Agentforce + Data Cloud + Commerce Cloud.</p>
+    <div class="badge">Powered by Agentforce</div>
+  </div>
+  <div class="p1-subnav">
+    <a href="#p1-hyp">Hipóteses de Valor</a>
+    <a href="#p1-agents">Agentes</a>
+    <a href="#p1-road">Roadmap</a>
+    <a href="#p1-kpis">KPIs</a>
+    <a href="#p1-waf">WAF Guardrails</a>
+  </div>
+
+  <div class="sec" id="p1-hyp">
+    <h2>As 4 Hipóteses de Valor</h2>
+    <div class="sub">Transformações agênticas de maior impacto — ordenadas por ROI e velocidade de implementação.</div>
+    <div class="hyp-grid">
+      <div class="hyp-card">
+        <div class="num">01</div>
+        <h3>Golden Record do Cliente em Tempo Real</h3>
+        <p>Unificar dados de loja física, app, WhatsApp e e-commerce em um único perfil via Data Cloud elimina o atendimento fragmentado e habilita personalização verdadeira em qualquer canal.</p>
+        <div class="kpi">+34% CSAT · -28% churn</div>
+      </div>
+      <div class="hyp-card">
+        <div class="num">02</div>
+        <h3>Venda Assistida por Agente no WhatsApp</h3>
+        <p>Um agente Agentforce qualifica, recomenda e conduz o checkout via WhatsApp — com handoff inteligente para vendedor humano quando necessário — aumentando conversão sem aumentar headcount.</p>
+        <div class="kpi">+22% conversão · 60% deflexão</div>
+      </div>
+      <div class="hyp-card">
+        <div class="num">03</div>
+        <h3>Personal Shopper Autônomo no App/E-comm</h3>
+        <p>Recomendação preditiva baseada em comportamento, histórico de compras e contexto em tempo real — com checkout em 1 clique via Agentforce Commerce Agent.</p>
+        <div class="kpi">+18% AOV · +41% recompra</div>
+      </div>
+      <div class="hyp-card">
+        <div class="num">04</div>
+        <h3>Sales Copilot para Vendedores em Loja</h3>
+        <p>Vendedores em loja física recebem sugestões contextuais de cross-sell/upsell, histórico 360° do cliente e alertas de stock — direto no dispositivo — via Agentforce Sales Copilot.</p>
+        <div class="kpi">+15% ticket médio · -40% tempo atend.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stripe" id="p1-agents">
+    <div class="sec" style="padding-top:0;padding-bottom:0">
+      <h2>Design dos Agentes Agentforce</h2>
+      <div class="sub">5 agentes mapeados por tipo, canal e fonte de grounding.</div>
+      <table class="arch-table">
+        <thead><tr><th>Agente</th><th>Tipo</th><th>Canais</th><th>Ações Principais</th><th>Grounding</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Personal Shopper</strong></td><td><span class="tag tag-auto">Autônomo</span></td><td>App · E-comm</td><td>Recomendar, checkout 1-click, recuperar carrinho</td><td>Data Cloud · Einstein · Catálogo</td></tr>
+          <tr><td><strong>WhatsApp Commerce Agent</strong></td><td><span class="tag tag-assist">Assistivo</span></td><td>WhatsApp · AFCCD</td><td>Qualificar, recomendar, handoff, pós-venda</td><td>CRM 360° · Knowledge · OMS</td></tr>
+          <tr><td><strong>Sales Assistant (Loja)</strong></td><td><span class="tag tag-assist">Assistivo</span></td><td>Mobile POS · Tablet</td><td>Cross-sell/upsell, histórico, estoque, fidelidade</td><td>Data Cloud · Retail Cloud · Loyalty</td></tr>
+          <tr><td><strong>Order &amp; Post-Sale Agent</strong></td><td><span class="tag tag-auto">Autônomo</span></td><td>WhatsApp · App · Email</td><td>Rastrear pedido, devolução, voucher, FAQ</td><td>OMS · Service Cloud · Knowledge</td></tr>
+          <tr><td><strong>Merchandising Copilot</strong></td><td><span class="tag tag-orch">Orquestrador</span></td><td>Backoffice · Slack</td><td>Sell-through, promoções, forecast</td><td>Tableau · Data Cloud · ERP</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="sec" id="p1-road">
+    <h2>Roadmap — 3 Fases</h2>
+    <div class="sub">Foundation → Scale → Optimize · Padrão Hybrid Agent Mesh.</div>
+    <div class="roadmap">
+      <div class="phase phase-1">
+        <div class="ph-label">Fase 1 · 0–6 meses</div><h4>Foundation</h4>
+        <ul><li>Data Cloud: Golden Record unificado</li><li>Commerce Cloud + CRM integrado</li><li>WhatsApp pilot (AFCCD) em 3 lojas</li><li>Einstein Recommendations ativo</li><li>OMS base configurado</li></ul>
+      </div>
+      <div class="phase phase-2">
+        <div class="ph-label">Fase 2 · 6–12 meses</div><h4>Scale</h4>
+        <ul><li>Retail Cloud POS em todas as lojas</li><li>Agentforce Sales Copilot rollout</li><li>WhatsApp Commerce Agent produção</li><li>Personal Shopper no app (beta)</li><li>Loyalty Cloud integrado ao Data Cloud</li></ul>
+      </div>
+      <div class="phase phase-3">
+        <div class="ph-label">Fase 3 · 12–24 meses</div><h4>Optimize</h4>
+        <ul><li>Autonomia total dos agentes</li><li>Merchandising Copilot em produção</li><li>Tableau preditivo de demanda</li><li>Agent2Agent com parceiros logísticos</li><li>Agentic Payments (Mastercard/Visa)</li></ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="stripe" id="p1-kpis">
+    <div class="sec" style="padding-top:0;padding-bottom:0">
+      <h2>KPIs por Fase</h2>
+      <div class="sub">Métricas de negócio que provam valor de cada fase.</div>
+      <div class="kpi-grid">
+        <div class="kpi-box"><div class="val">+22%</div><div class="desc">Conversão WhatsApp (F1)</div></div>
+        <div class="kpi-box"><div class="val">60%</div><div class="desc">Deflexão sem humano (F1)</div></div>
+        <div class="kpi-box"><div class="val">+18%</div><div class="desc">AOV e-commerce (F2)</div></div>
+        <div class="kpi-box"><div class="val">+15%</div><div class="desc">Ticket médio loja (F2)</div></div>
+        <div class="kpi-box"><div class="val">-40%</div><div class="desc">Tempo atendimento loja (F2)</div></div>
+        <div class="kpi-box"><div class="val">+41%</div><div class="desc">Taxa de recompra (F3)</div></div>
+        <div class="kpi-box"><div class="val">-28%</div><div class="desc">Churn clientes (F3)</div></div>
+        <div class="kpi-box"><div class="val">3.2x</div><div class="desc">ROI Agentforce (F3)</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec" id="p1-waf">
+    <h2>WAF Guardrails</h2>
+    <div class="sub">Riscos críticos a mitigar antes do go-live.</div>
+    <div class="waf-grid">
+      <div class="waf-card"><h4>🛡️ Trust &amp; LGPD</h4><p>WhatsApp via AFCCD usa infra Meta — avaliar data residency no Brasil. Consentimento explícito para dados de comportamento em loja e app.</p></div>
+      <div class="waf-card"><h4>⚡ Scalability</h4><p>Data Cloud deve suportar picos de Black Friday. SLA de latência para recomendações em tempo real (&lt;200ms p95).</p></div>
+      <div class="waf-card"><h4>🔌 Integration Reliability</h4><p>OMS e ERP com APIs idempotentes. MuleSoft como camada de integração com circuit breaker e tolerância a falhas.</p></div>
+      <div class="waf-card"><h4>🤖 Agent Governance</h4><p>Definir escopo de autonomia: o que pode aprovar desconto, o que precisa de humano no loop. Kill switch obrigatório em todos os agentes.</p></div>
+    </div>
+  </div>
+
+  <div class="gfooter">
+    <strong>Salesforce Agentforce</strong> · Enterprise AI Architecture Blueprint · Varejo Omnichannel
+
+    Gerado com base em Amy Webb / FTSG Convergence Outlook 2026 + Salesforce Well-Architected Framework
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE 2 — BLUEPRINT TÉCNICO
+═══════════════════════════════════════════ -->
+<div id="p2" class="page">
+  <div class="p2-hero">
+    <div class="eyebrow">Salesforce — Arquitetura de Referência</div>
+    <h1>Blueprint Técnico
+
+Omnichannel Salesforce</h1>
+    <p>Venda assistida unificada: loja física, WhatsApp, app e e-commerce sobre uma única plataforma de dados e agentes.</p>
+    <div>
+      <span class="pill">Commerce Cloud</span><span class="pill">Data Cloud</span>
+      <span class="pill">Agentforce</span><span class="pill">Retail Cloud</span>
+      <span class="pill">Service Cloud</span><span class="pill">MuleSoft</span>
+    </div>
+  </div>
+
+  <div class="p2-wrap">
+    <h2>Camadas da Arquitetura</h2>
+    <div class="arch-viz">
+      <div class="arch-layer"><div class="icon">🏪</div><h4>Canais</h4><p>Loja Física · WhatsApp · App Mobile · E-commerce</p></div>
+      <div class="arch-layer"><div class="icon">🤖</div><h4>Agentforce</h4><p>5 agentes especializados + orquestrador central</p></div>
+      <div class="arch-layer"><div class="icon">🧠</div><h4>Data Cloud</h4><p>Golden Record · Einstein AI · Segmentação real-time</p></div>
+      <div class="arch-layer"><div class="icon">🛒</div><h4>Commerce + OMS</h4><p>Catálogo · Estoque · Pedidos · Pagamentos</p></div>
+      <div class="arch-layer"><div class="icon">🔗</div><h4>MuleSoft</h4><p>Integração ERP · WMS · POS · Logística</p></div>
+      <div class="arch-layer"><div class="icon">📊</div><h4>Tableau</h4><p>Dashboards · Forecast · Sell-through</p></div>
+    </div>
+
+    <h2>Experiência por Canal</h2>
+    <div class="ch-grid">
+      <div class="ch-card store"><div class="ch-icon">🏪</div><h3>Loja Física</h3><ul><li>Sales Copilot no tablet do vendedor</li><li>Histórico 360° na chegada do cliente</li><li>Cross-sell IA em tempo real</li><li>Check de estoque instantâneo</li><li>Fidelidade e pontos integrados</li></ul></div>
+      <div class="ch-card wapp"><div class="ch-icon">💬</div><h3>WhatsApp</h3><ul><li>Agente qualifica e recomenda 24/7</li><li>Envio de catálogo personalizado</li><li>Checkout via link direto</li><li>Handoff para vendedor humano</li><li>Pós-venda e rastreio automático</li></ul></div>
+      <div class="ch-card app"><div class="ch-icon">📱</div><h3>App Mobile</h3><ul><li>Personal Shopper c/ contexto de localização</li><li>Notificações personalizadas (push)</li><li>Checkout 1-click c/ dados salvos</li><li>Scanner de produto em loja</li><li>Loyalty e gamificação</li></ul></div>
+      <div class="ch-card ecomm"><div class="ch-icon">🖥️</div><h3>E-commerce</h3><ul><li>Einstein Recommendations (collaborative)</li><li>Busca semântica com IA</li><li>Carrinho abandonado — agente reativa</li><li>Checkout progressivo</li><li>Click &amp; Collect integrado</li></ul></div>
+    </div>
+
+    <h2>Decisão de Automação — Quando Usar Cada Ferramenta</h2>
+    <table class="dec-table">
+      <thead><tr><th>Necessidade</th><th>Ferramenta</th><th>Justificativa</th></tr></thead>
+      <tbody>
+        <tr><td>Qualificação de lead no WhatsApp</td><td><span class="tool">Agentforce</span><span class="tool">Flow</span></td><td>Agente autônomo com Flow para escalação</td></tr>
+        <tr><td>Recomendação de produto no app</td><td><span class="tool">Einstein AI</span><span class="tool">Data Cloud</span></td><td>Modelo colaborativo treinado no perfil unificado</td></tr>
+        <tr><td>Integração ERP/WMS</td><td><span class="tool">MuleSoft</span></td><td>Tolerância a falhas, circuit breaker, API-led</td></tr>
+        <tr><td>Regra de desconto dinâmico</td><td><span class="tool">BRE</span><span class="tool">Flow</span></td><td>BRE para lógica de preço + Flow para execução</td></tr>
+        <tr><td>Lógica de fidelidade complexa</td><td><span class="tool">Apex</span><span class="tool">Loyalty Cloud</span></td><td>Triggers customizados + Loyalty para acúmulo/resgate</td></tr>
+        <tr><td>Pós-venda e rastreio</td><td><span class="tool">Agentforce</span><span class="tool">OMS</span></td><td>Agente autônomo consulta OMS sem humano</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Glossário Técnico</h2>
+    <div class="gloss-grid">
+      <div class="gloss-item"><strong>Data Cloud — Golden Record</strong><p>Perfil unificado do cliente criado a partir de múltiplas fontes. Base para personalização em todos os canais.</p></div>
+      <div class="gloss-item"><strong>Agentforce</strong><p>Plataforma Salesforce para criar agentes de IA autônomos que planejam, raciocinam e executam tarefas.</p></div>
+      <div class="gloss-item"><strong>AFCCD</strong><p>Agentforce for Customer Communications — canal WhatsApp nativo da Salesforce integrado à infra Meta.</p></div>
+      <div class="gloss-item"><strong>OMS — Order Management System</strong><p>Centraliza gestão de pedidos de todos os canais, controla estoque distribuído e orquestra fulfillment.</p></div>
+      <div class="gloss-item"><strong>Hybrid Agent Mesh</strong><p>Padrão onde IA executa o volume e humano intervém nas decisões de alto valor ou exceções.</p></div>
+      <div class="gloss-item"><strong>Agent2Agent (A2A)</strong><p>Protocolo aberto (Google + Salesforce + Linux Foundation) para agentes negociarem tarefas entre si.</p></div>
+    </div>
+  </div>
+
+  <div class="gfooter">
+    Salesforce Enterprise AI Architecture Blueprint · Varejo Omnichannel · 2026
+
+    Baseado no Salesforce Well-Architected Framework e Convergence Outlook 2026 — Amy Webb / FTSG
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE 3 — CONVERGENCE INSIGHTS (DARK)
+═══════════════════════════════════════════ -->
+<div id="p3" class="page">
+  <div class="p3-wrap">
+    <div class="p3-hero">
+      <span class="src-tag">Amy Webb · FTSG · Convergence Outlook 2026</span>
+      <h1>Convergence Insights 2026
+
+× Salesforce Varejo</h1>
+      <p>Os 5 sinais de convergência do relatório Amy Webb que validam e urgem a estratégia de Agentforce para varejo omnichannel — com implicações concretas para cada capacidade Salesforce.</p>
+      <div class="attr">Fonte: Future Today Strategy Group — Convergence Outlook 2026 (318 páginas)</div>
+    </div>
+    <div class="p3-subnav">
+      <a href="#p3-conv">Convergências</a>
+      <a href="#p3-sig">Sinais Fracos</a>
+      <a href="#p3-imp">Imperativos</a>
+      <a href="#p3-tl">Timeline</a>
+    </div>
+
+    <div class="p3-sec" id="p3-conv">
+      <div class="p3-sec-hdr">
+        <div class="ey">Análise de Convergência</div>
+        <h2>5 Convergências que Moldam o Varejo 2026–2030</h2>
+        <p>Extraídas do Convergence Outlook 2026 e mapeadas para as capacidades Salesforce mais relevantes.</p>
+      </div>
+      <div class="conv-grid">
+        <div class="conv-card"><div class="cnum">C1</div><h3>Agentic Economies &amp; Post-Search Internet</h3><div class="amy-q">"The transaction, once an act a person initiated, becomes an outcome a person inherits." — FTSG, pág. 111</div><div class="sf-angle"><strong>Para o varejo:</strong> O consumidor não vai mais "buscar" produto — um agente fará isso por ele. Quem não estiver no layer de agentes (Agentforce + A2A + Agentic Payments) perderá acesso ao cliente.</div></div>
+        <div class="conv-card"><div class="cnum">C2</div><h3>Identidade Contínua &amp; Fim do Anonimato</h3><div class="amy-q">"Biometric systems now identify you by default — turning everyday life into continuous authentication." — FTSG, pág. 18</div><div class="sf-angle"><strong>Para o varejo:</strong> A loja física já reconhece o cliente (facial scan, WiFi, geolocalização). Data Cloud Golden Record é a infraestrutura crítica. Risco: LGPD exige consentimento explícito.</div></div>
+        <div class="conv-card"><div class="cnum">C3</div><h3>Prediction Replacing Permission</h3><div class="amy-q">"Systems no longer wait for you to act. They intervene preemptively based on forecasts." — FTSG, pág. 18</div><div class="sf-angle"><strong>Para o varejo:</strong> Einstein Predictions e Agentforce antecipam a intenção de compra antes do clique. O agente no WhatsApp envia a oferta certa antes do cliente perguntar.</div></div>
+        <div class="conv-card"><div class="cnum">C4</div><h3>Polycompute &amp; Intelligence Orchestration</h3><div class="amy-q">"Architecture determines who can act, how fast, and under what oversight. That becomes a governance issue." — FTSG, pág. 105</div><div class="sf-angle"><strong>Para o varejo:</strong> A camada de orquestração é o novo chokepoint competitivo. Salesforce posicionada como orquestrador enterprise via Agentforce + MuleSoft.</div></div>
+        <div class="conv-card"><div class="cnum">C5</div><h3>Two-Tier Market: Commodity vs. Premium</h3><div class="amy-q">"A two-tiered market: commodity goods optimized for agent discovery vs. luxury goods that require human interaction as a feature." — FTSG, pág. 120</div><div class="sf-angle"><strong>Para o varejo:</strong> Sales Copilot diferencia o varejo premium. A IA amplifica — não substitui — a relação humana no segmento de alto valor.</div></div>
+      </div>
+    </div>
+
+    <div class="p3-stripe" id="p3-sig">
+      <div class="p3-sec" style="padding-top:0;padding-bottom:0">
+        <div class="p3-sec-hdr">
+          <div class="ey">Sinais do Relatório Amy Webb</div>
+          <h2>Sinais já Acontecendo em 2026</h2>
+          <p>Eventos concretos que confirmam a urgência da estratégia agêntica no varejo.</p>
+        </div>
+        <div class="sig-grid">
+          <div class="sig-box"><div class="icon">💳</div><h4>Mastercard Agent Pay</h4><p>Lançado em 2025 — trata agente como "portador de cartão". Checkout autônomo em produção.</p></div>
+          <div class="sig-box"><div class="icon">🛒</div><h4>OpenAI + Shopify + Instacart</h4><p>ChatGPT navega inventário, monta carrinho e vai ao checkout — sem abrir o app da loja.</p></div>
+          <div class="sig-box"><div class="icon">🤝</div><h4>Google A2A Protocol</h4><p>Agent2Agent com 150+ organizações incluindo Salesforce, PayPal e SAP — protocolo padrão.</p></div>
+          <div class="sig-box"><div class="icon">🏪</div><h4>Wegmans Facial Scan</h4><p>Supermercados capturam biometria de clientes na entrada — convertendo anonimato em identidade.</p></div>
+          <div class="sig-box"><div class="icon">🔍</div><h4>Google Universal Commerce</h4><p>Protocolo Jan/2026 — checkout acontece dentro de respostas de IA sem visitar a loja.</p></div>
+          <div class="sig-box"><div class="icon">📦</div><h4>Amazon "Buy for Me"</h4><p>Agente Amazon compra em sites concorrentes — enquanto bloqueia agentes externos do marketplace.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="p3-sec" id="p3-imp">
+      <div class="p3-sec-hdr">
+        <div class="ey">Decisões Estratégicas</div>
+        <h2>5 Imperativos para Varejistas em 2026</h2>
+        <p>Derivados da análise de convergência — com a capacidade Salesforce que endereça cada um.</p>
+      </div>
+      <ul class="imp-list">
+        <li><div class="impn">01</div><div><h4>Construir o Golden Record antes que o concorrente construa o dele</h4><p>Quem controla os dados do cliente controla a demanda na era agêntica. A janela de vantagem está se fechando — competitors com perfil completo definirão os defaults dos agentes dos consumidores.</p><span class="sfprod">Data Cloud</span><span class="sfprod">Identity Resolution</span></div></li>
+        <li><div class="impn">02</div><div><h4>Posicionar-se como canal preferencial dos agentes do cliente</h4><p>O agente do consumidor escolherá com base em dados estruturados, APIs abertas e avaliações verificáveis — não em branding. O varejo precisa ser "legível" para agentes.</p><span class="sfprod">Commerce Cloud APIs</span><span class="sfprod">Agentforce A2A</span></div></li>
+        <li><div class="impn">03</div><div><h4>Implantar governança de agentes antes de escalar autonomia</h4><p>Amy Webb: "Stand up agent governance before scaling autonomy." Sem kill switches e auditabilidade, o varejo colherá consequências imprevisíveis em promoções, descontos e estoque.</p><span class="sfprod">Agentforce CoE</span><span class="sfprod">Shield Compliance</span></div></li>
+        <li><div class="impn">04</div><div><h4>Proteger a relação humana no segmento premium</h4><p>Mercado em dois tiers: commodities automatizadas vs. premium que exige interação humana como feature. Sales Copilot amplifica — não substitui — o vendedor especialista.</p><span class="sfprod">Retail Cloud POS</span><span class="sfprod">Sales Copilot</span></div></li>
+        <li><div class="impn">05</div><div><h4>Preparar-se para Agentic Payments em 2026</h4><p>"Visa and Mastercard have announced that agentic commerce will launch commercially in 2026." Os trilhos de pagamento autônomo já estão sendo construídos.</p><span class="sfprod">Commerce Cloud Payments</span><span class="sfprod">MuleSoft</span></div></li>
+      </ul>
+    </div>
+
+    <div class="p3-stripe" id="p3-tl">
+      <div class="p3-sec" style="padding-top:0;padding-bottom:0;max-width:700px">
+        <div class="p3-sec-hdr">
+          <div class="ey">Linha do Tempo</div>
+          <h2>Da Convergência à Implantação</h2>
+          <p>Quando cada força do relatório Amy Webb impacta o varejo — e o momento de agir com Salesforce.</p>
+        </div>
+        <div class="tl">
+          <div class="tl-item now"><div class="tl-date">Agora · 2026</div><h4>Agentic Commerce em Produção</h4><p>Mastercard Agent Pay, Google Universal Commerce e OpenAI Instant Checkout ativos. Momento de implantar Data Cloud + Agentforce Foundation.</p></div>
+          <div class="tl-item now"><div class="tl-date">2026 · H2</div><h4>Post-Search como Default</h4><p>Gemini no Android e Copilot no Windows tornam-se entrada padrão para buscas de produto. SEO perde relevância. A2A Protocol obrigatório para visibilidade.</p></div>
+          <div class="tl-item fut"><div class="tl-date">2027</div><h4>Agent-to-Agent Markets em Escala</h4><p>Agentes de consumidores negociam com agentes de varejistas em tempo real — preço, prazo, condição. Arquitetura multi-agente vira vantagem de margem.</p></div>
+          <div class="tl-item fut"><div class="tl-date">2028–2030</div><h4>Redesign Completo do Varejo</h4><p>Amy Webb: "Companies that treat AI as an add-on will optimize tools; the ones that treat it as infrastructure will redesign systems."</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gfooter dark">
+      <strong>Convergence Insights 2026 × Salesforce Varejo</strong>
+
+      Fonte primária: Future Today Strategy Group — Convergence Outlook 2026 (Amy Webb et al.)
+
+      Cruzado com Salesforce Enterprise AI Architecture Blueprint — Varejo Omnichannel
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     TAB SWITCH SCRIPT
+═══════════════════════════════════════════ -->
+<script>
+function showPage(id, btn) {
+  // hide all pages
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  // deactivate all tabs
+  document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
+  // show selected page
+  document.getElementById(id).classList.add('active');
+  // activate clicked tab
+  btn.classList.add('active');
+  // scroll to top of page
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+</script>
+
+</body>
+</html>
